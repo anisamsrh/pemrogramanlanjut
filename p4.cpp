@@ -4,6 +4,7 @@ using namespace std;
 class PersegiPanjang {
     public :
         int xmin, xmax, ymin, ymax;
+        int x, y, r;
         
         PersegiPanjang(int x, int y, int width, int height) {
             xmin = x - width/2;
@@ -43,13 +44,19 @@ class PersegiPanjang {
         PersegiPanjang operator ++ (int u) {
             this->xmax += (this->xmax - this->xmin);
             this->ymax += (this->ymax - this->ymin);
-            // return;
+            
+            int width = xmax - xmin;
+            int height = ymax - ymin;
+            return PersegiPanjang(width/2 + xmin, height/2 + ymin, width, height);
         }
         
         PersegiPanjang operator -- (int u) {
             this->xmax -= (this->xmax - this->xmin)/2;
             this->ymax -= (this->ymax - this->ymin)/2;
-            // return;
+            
+            int width = xmax - xmin;
+            int height = ymax - ymin;
+            return PersegiPanjang(width/2 + xmin, height/2 + ymin, width, height);
         }
         
         bool operator == (const PersegiPanjang& lain) const {
@@ -65,24 +72,23 @@ class PersegiPanjang {
                 } else if (this->ymax >= lain.ymin && this->ymax <= lain.ymax) {
                     return true;
                 }
-            } else {
-                return false;
-            }
+            } 
+            return false;
         }
         
-        const double& operator [] (int index) const {
+        const int& operator [] (int index) const {
             switch (index) {
                 case 0 :
-                    return this->xmin;
+                    return xmin;
                     break;
                 case 1 :
-                    return this->ymin;
+                    return ymin;
                     break;
                 case 2 :
-                    return this->xmax;
+                    return xmax;
                     break;
                 case 3 :
-                    return this->ymax;
+                    return ymax;
                     break;
             }
         }
