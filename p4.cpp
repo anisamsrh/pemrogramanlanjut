@@ -70,6 +70,22 @@ class PersegiPanjang {
             }
         }
         
+        const double& operator [] (int index) const {
+            switch (index) {
+                case 0 :
+                    return this->xmin;
+                    break;
+                case 1 :
+                    return this->ymin;
+                    break;
+                case 2 :
+                    return this->xmax;
+                    break;
+                case 3 :
+                    return this->ymax;
+                    break;
+            }
+        }
 };
 
 int main()
@@ -86,6 +102,8 @@ int main()
     } else {
         cout << "No" << endl;
     }
+    
+    cout << biru[0] << endl;
 
     return 0;
 }
